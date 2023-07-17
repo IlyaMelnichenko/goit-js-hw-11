@@ -17,9 +17,19 @@ let currentQuery = '';
 hideLoadBtn();
 async function searchImages(query, page = 1, perPage = 40) {
   const Key = '38308100-c8bfe7ecfd47e0eeb8c400dc4';
-  const Url = `https://pixabay.com/api/?key=${Key}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`;
+  const Url = `https://pixabay.com/api/`
   try {
-    const response = await axios.get(Url);
+    const response = await axios.get(Url, {
+        params: {
+          key: Key,
+          q: query,
+          image_type: 'photo',
+          orientation: 'horizontal',
+          safesearch: true,
+          page: page,
+          per_page: perPage
+        }
+      });
     const { data } = response;
     if (data.hits.length === 0) {
       Notiflix.Notify.failure(
@@ -47,6 +57,7 @@ async function searchImages(query, page = 1, perPage = 40) {
 formEl.addEventListener('submit', event => {
     event.preventDefault();
     const searchQuery = event.target.elements.searchQuery.value.trim();
+    console.log(event.target.elements.searchQuery.value);
     if (searchQuery !== '') {
       currentPage = 1;
       currentQuery = searchQuery;
@@ -71,7 +82,8 @@ formEl.addEventListener('submit', event => {
     galleryEl.appendChild(galleryFragment);
     lightbox.refresh();
   }
-function creatCardMarkup(image) {
+
+  function creatCardMarkup(image) {
   const Card = document.createElement('div');
   Card.classList.add('photo-card');
   const linkElement = document.createElement('a');
