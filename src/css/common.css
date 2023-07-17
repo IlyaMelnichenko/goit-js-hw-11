@@ -1,0 +1,21 @@
+.section{
+    display: flex;
+    justify-content: center;
+}
+.load-more{
+    width:640px;
+    height: 80px;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.5;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #e7e9fc;
+    background-color:  #404bbf;
+    border-color: transparent;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+

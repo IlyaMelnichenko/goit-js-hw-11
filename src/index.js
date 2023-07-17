@@ -13,7 +13,7 @@ let currentPage = 1;
 let lightbox = null;
 let currentQuery = '';
 
-
+hideLoadBtn();
 async function searchImages(query, page = 1, perPage = 40) {
   const Key = '38308100-c8bfe7ecfd47e0eeb8c400dc4';
   const Url = `https://pixabay.com/api/?key=${Key}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`;
@@ -29,7 +29,7 @@ async function searchImages(query, page = 1, perPage = 40) {
         resetGallery();
         hideLoadBtn();
         lightbox = new SimpleLightbox('.gallery a');
-      }
+      };
       renderImages(data.hits);
       const totalHits = data.totalHits || 0;
       if (page * perPage < totalHits) {
