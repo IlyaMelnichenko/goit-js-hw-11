@@ -3,6 +3,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import * as Notiflix from 'notiflix';
 
+
 const formEl = document.getElementById('search-form');
 
 const loadBtn = document.querySelector('.load-more');
@@ -60,15 +61,16 @@ formEl.addEventListener('submit', event => {
 
 
   
-function renderImages(images) {
-  const galleryFragment = document.createDocumentFragment();
-  images.forEach(image => {
-    const Card = creatCardMarkup(image);
-    galleryFragment.appendChild(Card);
-  });
-  galleryEl.appendChild(galleryFragment);
-  lightbox.refresh();
-}
+  function renderImages(images) {
+    const galleryFragment = document.createDocumentFragment();
+    images.forEach(image => {
+      const card = creatCardMarkup(image);
+      card.classList.add('gallery-item');
+      galleryFragment.appendChild(card);
+    });
+    galleryEl.appendChild(galleryFragment);
+    lightbox.refresh();
+  }
 function creatCardMarkup(image) {
   const Card = document.createElement('div');
   Card.classList.add('photo-card');
